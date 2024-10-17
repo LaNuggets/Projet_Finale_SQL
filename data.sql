@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS employees (
     Address VARCHAR(25),
     PostId INTEGER,
     ReferentId INTEGER,
-    FOREIGN KEY (PostId) REFERENCES posts(Id),
+    FOREIGN KEY (PostId) REFERENCES posts(Id)
 );
 
 CREATE TABLE IF NOT EXISTS posts (
@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS posts (
 CREATE TABLE IF NOT EXISTS referent (
     ReferentId INTEGER,
     PostId INTEGER,
-    FOREIGN KEY (ReferentId) REFERENCES employees(Id),
+    FOREIGN KEY (ReferentId) REFERENCES employees(Id)
 );
 
 CREATE TABLE IF NOT EXISTS department (
