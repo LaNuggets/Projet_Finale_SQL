@@ -8,6 +8,7 @@ CREATE TABLE IF NOT EXISTS employees (
     PostId INTEGER,
     ReferentId INTEGER,
     FOREIGN KEY (PostId) REFERENCES posts(Id)
+    FOREIGN KEY (PostId) REFERENCES posts(Id)
 );
 
 CREATE TABLE IF NOT EXISTS posts (
