@@ -23,6 +23,17 @@ func main() {
 		accueil.Execute(w, nil)
 	})
 
+	http.HandleFunc("/allemployees", func(w http.ResponseWriter, r *http.Request) {
+        allemployees := template.Must(template.ParseFiles("./static/html/allemployees.html"))
+        allemployees.Execute(w, nil)
+    })
+
+	http.HandleFunc("/editemployee", func(w http.ResponseWriter, r *http.Request) {
+        editemployee := template.Must(template.ParseFiles("./static/html/editemployee.html"))
+        editemployee.Execute(w, nil)
+    })
+
+
 	db, err := sql.Open("sqlite3", "bdd.db")
 	if err != nil {
 		log.Fatal(err)
@@ -33,6 +44,9 @@ func main() {
 	if err := db.Ping(); err != nil {
 		log.Fatal(err)
 	}
+
+	
+	
 
 	http.HandleFunc("/employees", func(w http.ResponseWriter, r *http.Request) { // Start the communication whit the html page
 		employees := template.Must(template.ParseFiles("./static/html/employees.html"))

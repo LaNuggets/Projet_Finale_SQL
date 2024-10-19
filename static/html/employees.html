@@ -3,33 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="../style/header.css">
+    <link rel="stylesheet" href="../style/employees.css">
     <title>Accueil</title>
 </head>
+<header>
+  <a href="accueil">LOGO</a>
+  <nav>
+      <ul>
+          <li><a href="accueil">Home</a></li>
+          <li><a class="button-employees" href="allemployees">Employee</a></li>
+          <li><a href="">Teams</a></li>
+      </ul>
+  </nav>
+  <i class="material-icons" style="font-size:50px;">account_circle</i>
+</header>
 <body>
-    <h1>New Employee registration</h1>
+
     <form id="newEmployee" action="/employees">
-      <div>
-        <label for="lastName">Last Name :</label><br>
-        <input type="text" id="lastName" name="lastName" required>
-      </div>
-      <div>
-        <label for="firstName">First Name :</label><br>
-        <input type="text" id="FirstName" name="FirstName" required>
-      </div>
-      <div>
-        <label for="phoneNumber">Phone Number:</label><br>
-        <input type="text" id="phoneNumber" name="phoneNumber" required>
-      </div>
-      <div>
-        <label for="adress">Adress :</label><br>
-        <input type="text" id="adress" name="adress" required>
-      </div>
-      <div>
-        <label for="birthday">Birthday date :</label><br>
-        <input type="date" id="birthday" name="birthday" required>
-      </div>
-      <button type="submit">Submit</button>
-      </form>
+
+      <h1>Employee personal informations</h1>
+      <section class="employee-zone">
+        <section class="employee-info-zone">
+            <section class="employee-personnal-info-left">
+              <div>
+                  <label for="lastName">Last Name :</label><br>
+                  <input type="text" id="lastName" name="lastName" required>
+              </div>
+              <div>
+                  <label for="firstName">First Name :</label><br>
+                  <input type="text" id="FirstName" name="FirstName" required>
+              </div>
+              <div>
+                  <label for="phoneNumber">Phone Number:</label><br>
+                  <input type="text" id="phoneNumber" name="phoneNumber" required>
+              </div>
+            </section>
+            <section class="employee-personnal-info-right">
+              <div>
+                  <label for="adress">Address :</label><br>
+                  <input type="text" id="adress" name="adress" required>
+              </div>
+              <div class="birthdaye-input">
+                  <label for="birthday">Birthday date :</label><br>
+                  <input type="date" id="birthday" name="birthday" required>
+              </div>
+            </section>
+        </section>
+        <section class="employee-work-zone">
+          <div>
+              <label for="department">Department :</label><br>
+              <input type="text" id="department" name="department" required>
+          </div>
+          <div>
+              <label for="post">Post :</label><br>
+              <input type="text" id="post" name="post" required>
+          </div>
+          <div>
+              <label for="manageBy">Manage By :</label><br>
+              <input type="text" id="manageBy" name="manageBy" required>
+          </div>
+      </section>
+    </section>
+    <button type="submit">New Employee</button>
+    </form>
 </body>
 </html>

@@ -1,0 +1,73 @@
+.button-employees {
+    border-bottom: 5px solid #ffffff;
+}
+
+.employees {
+    display: flex;
+    flex-direction: column;
+    margin: 2.5%;
+}
+
+.seeEmployees {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.seeEmployees a {
+    text-decoration: none;
+    color: #000;
+    background-color: #E0E0E0;
+    border: none;
+    padding: 5px;
+    border-radius: 15px;
+}
+
+.seeEmployees button {
+    background-color: #E0E0E0;
+    border: none;
+    padding: 10px;
+    border-radius: 15px;
+}
+
+.employee-zone {
+    display: flex;
+    background-color: #E0E0E0;
+    border-radius: 15px;
+    padding: 2%;
+    margin-top: 2.5%;
+}
+
+.employee-zone a {
+    text-decoration: none;
+    color: #000;
+    background-color: #E0E0E0;
+    border: none;
+    padding-right: 5%;
+    padding-left: 5%;
+    border-radius: 50px;
+    font-size: 0.85em;
+    margin-left: 80%;
+}
+
+.employee-Info {
+    background-color: #FBFBFB;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 15px;
+    align-items: center;
+    padding: 3%;
+    gap: 25px;
+
+}
+
+.employee-personnal-info, .employee-working-info {
+    background-color: #EDEDED;
+    outline: 1px solid rgb(0, 0, 0, 0.5);
+    border-radius: 15px;
+    width: 100%;
+    padding: 10%;
+}
+
+
