@@ -27,23 +27,26 @@
             <button> <a href="employees"> New Employee </a></button>
         </div>
         <section class="employee-zone">
+        {{range .}}
             <div class="employee-Info">
                 <div class="employee-personnal-info">
-                    <p>First Name: Edgar</p>
-                    <p>Last Name: Couthouis</p>
-                    <p>Phone Number: 0102030405 </p>
-                    <p>Adress: ynov 12345 Nantes</p>
-                    <p>Birthdate:21/09/2020 </p>
+                    <p>First Name: {{.FirstName}}</p>
+                    <p>Last Name: {{.LastName}}</p>
+                    <p>Phone Number: {{.PhoneNumber}}</p>
+                    <p>Address: {{.Address}}</p>
+                    <p>Birthdate: {{.Birthdate}}</p>
                 </div>
                 <div class="employee-working-info">
-                    <p>Department: </p>
-                    <p>Post: </p>
-                    <p>Wage: </p>
-                    <p>Manage By: </p>
+                    <p>Department: {{.Department}}</p>
+                    <p>Post: {{.Post}}</p>
+                    <p>Wage: {{.Wage}}</p>
+                    <p>Manage By: {{.ManageBy}}</p>
                 </div>
-                <a href="editemployee" class="edit-employee"> Edit </a>
+                <a href="editemployee" class="edit-employee">Edit</a>
             </div>
-        </section>
+        {{end}}
+        <section class="employee-zone">
+
     </section>
 
 </body>
