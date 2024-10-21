@@ -6,7 +6,7 @@ import (
 	"net/http"
 )
 
-type Employees struct {
+type Employee struct {
 	Id        int
 	LastName  string
 	FirstName string
@@ -22,7 +22,23 @@ func CheckErr(err error, w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func AddEmployee(employe Employees, w http.ResponseWriter, r *http.Request) {
+func AddEmployee(w http.ResponseWriter, r *http.Request) {
+	errP := r.ParseForm()
+	if errP != nil {
+		http.Error(w, "Error parsing form", http.StatusInternalServerError)
+		return
+	}
+
+	lastName := r.FormValue("lastName")
+	firstName := r.FormValue("firstName")
+	phone := r.FormValue("phoneNumber")
+	address := r.FormValue("adress")
+	birthday := r.FormValue("birthday")
+
+	fmt.Println(lastName, firstName, phone, address, birthday)
+
+	newEmployee := Employee{LastName: lastName, FirstName: firstName, Phone: phone, Address: address, Birthday: birthday}
+
 	//Open the database connection
 	db, err := sql.Open("sqlite3", "bdd.db?_foreign_keys=on")
 	CheckErr(err, w, r)
@@ -30,6 +46,6 @@ func AddEmployee(employe Employees, w http.ResponseWriter, r *http.Request) {
 	defer db.Close()
 
 	query, _ := db.Prepare("INSERT INTO employees (LastName, FirstName, BirthDay, Phone, Address) VALUES (?, ?, ?, ?, ?)")
-	query.Exec(employe.LastName, employe.FirstName, employe.Birthday, employe.Phone, employe.Address)
+	query.Exec(newEmployee.LastName, newEmployee.FirstName, newEmployee.Birthday, newEmployee.Phone, newEmployee.Address)
 	defer query.Close()
 }
