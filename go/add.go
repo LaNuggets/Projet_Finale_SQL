@@ -7,12 +7,14 @@ import (
 )
 
 type Employee struct {
-	Id        int
-	LastName  string
-	FirstName string
-	Birthday  string
-	Phone     string
-	Address   string
+	Id         int
+	LastName   string
+	FirstName  string
+	Birthday   string
+	Phone      string
+	Address    string
+	PostId     int
+	ReferentId int
 }
 
 func CheckErr(err error, w http.ResponseWriter, r *http.Request) {
@@ -35,7 +37,11 @@ func AddEmployee(w http.ResponseWriter, r *http.Request) {
 	address := r.FormValue("adress")
 	birthday := r.FormValue("birthday")
 
-	fmt.Println(lastName, firstName, phone, address, birthday)
+	department := r.FormValue("department")
+	post := r.FormValue("post")
+	manageBy := r.FormValue("manageBy")
+
+	fmt.Println(lastName, firstName, phone, address, birthday, department, post, manageBy)
 
 	newEmployee := Employee{LastName: lastName, FirstName: firstName, Phone: phone, Address: address, Birthday: birthday}
 
@@ -48,4 +54,6 @@ func AddEmployee(w http.ResponseWriter, r *http.Request) {
 	query, _ := db.Prepare("INSERT INTO employees (LastName, FirstName, BirthDay, Phone, Address) VALUES (?, ?, ?, ?, ?)")
 	query.Exec(newEmployee.LastName, newEmployee.FirstName, newEmployee.Birthday, newEmployee.Phone, newEmployee.Address)
 	defer query.Close()
+
+	http.Redirect(w, r, "/allemployees", http.StatusSeeOther)
 }
