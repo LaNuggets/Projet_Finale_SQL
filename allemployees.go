@@ -2,7 +2,6 @@ package main
 
 import (
 	Projet_Final_SQL "Projet_Final_SQL/go"
-	"fmt"
 	"html/template"
 	"log"
 	"net/http"
@@ -17,28 +16,15 @@ func AllEmployees(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// if r.Method == http.MethodPost {
 	allEmployeesList := Projet_Final_SQL.GetAllEmployees(w, r)
-	fmt.Println(allEmployeesList)
-	// 	return
-	// }
 
-	// data := struct {
-	// 	// lastName   string
-	// 	// firstName  string
-	// 	// phone      string
-	// 	// address    string
-	// 	// birthday   string
-	// 	// department string
-	// 	// post       string
-	// 	// wage       int
-	// 	// manage     string
-	// 	allEmployees []Projet_Final_SQL.Employee
-	// }{
-	// 	allEmployees: allEmployeesList,
-	// }
+	data := struct {
+		AllEmployees []Projet_Final_SQL.CompletEmployee
+	}{
+		AllEmployees: allEmployeesList,
+	}
 
-	err = tmpl.Execute(w, nil)
+	err = tmpl.Execute(w, data)
 	if err != nil {
 		log.Printf("\033[31mError executing template: %v\033[0m", err)
 		http.Error(w, "Internal error", http.StatusInternalServerError)
