@@ -15,16 +15,19 @@ CREATE TABLE IF NOT EXISTS posts (
     Title VARCHAR(25),
     DepartmentId INTEGER,
     PermissionId INTEGER,
+    ReferentId INTEGER,
     SalaryId INTEGER,
     FOREIGN KEY (DepartmentId) REFERENCES department(Id),
     FOREIGN KEY (PermissionId) REFERENCES permission(Id),
-    FOREIGN KEY (SalaryId) REFERENCES salary(Id)
+    FOREIGN KEY (SalaryId) REFERENCES salary(Id),
+    FOREIGN KEY (ReferentId) REFERENCES referent(ReferentId)
 );
 
 CREATE TABLE IF NOT EXISTS referent (
     ReferentId INTEGER,
     PostId INTEGER,
-    FOREIGN KEY (ReferentId) REFERENCES employees(Id)
+    FOREIGN KEY (ReferentId) REFERENCES posts(Id)
+    FOREIGN KEY (PostId) REFERENCES posts(Id)
 );
 
 CREATE TABLE IF NOT EXISTS department (
