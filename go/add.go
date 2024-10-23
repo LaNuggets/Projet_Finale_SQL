@@ -19,16 +19,6 @@ type SendCompletEmployee struct {
 	ReferentId int
 }
 
-type SendCompletEmployee struct {
-	Id         int
-	LastName   string
-	FirstName  string
-	Birthday   string
-	Phone      string
-	Address    string
-	PostId     int
-	ReferentId int
-}
 
 type CompletEmployee struct {
 	Id           int
@@ -65,7 +55,6 @@ func AddEmployee(w http.ResponseWriter, r *http.Request) {
 	address := r.FormValue("adress")
 	birthday := r.FormValue("birthday")
 
-	department := r.FormValue("department")
 	postTitle := r.FormValue("post")
 	ReferentName := r.FormValue("manageBy")
 
