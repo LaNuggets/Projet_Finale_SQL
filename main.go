@@ -16,7 +16,7 @@ func main() {
 
 	http.HandleFunc("/accueil", Accueil)
 	http.HandleFunc("/allemployees", AllEmployees)
-	http.HandleFunc("/editemployee", EditEmployee)
+	http.HandleFunc("/editemployee", EditEmployeePage)
 	http.HandleFunc("/employees", Employees)
 
 	fmt.Println("http://localhost" + port + "/accueil")

@@ -1,12 +1,19 @@
 package main
 
 import (
+	Projet_Final_SQL "Projet_Final_SQL/go"
+	"fmt"
 	"html/template"
 	"log"
 	"net/http"
 )
 
-func EditEmployee(w http.ResponseWriter, r *http.Request) {
+func EditEmployeePage(w http.ResponseWriter, r *http.Request) {
+	if r.Method == http.MethodPost {
+		Projet_Final_SQL.EditEmployee(w, r)
+		return
+	}
+	fmt.Println("non")
 
 	tmpl, err := template.ParseFiles("./static/html/editemployee.html") // Read the home page
 	if err != nil {
