@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"net/http"
-
 	_ "github.com/mattn/go-sqlite3"
 )
 
@@ -18,6 +17,7 @@ func main() {
 	http.HandleFunc("/allemployees", AllEmployees)
 	http.HandleFunc("/editemployee", EditEmployee)
 	http.HandleFunc("/employees", Employees)
+	http.HandleFunc("/department/", DepartmentEmployee)
 
 	fmt.Println("http://localhost" + port + "/accueil")
 	http.ListenAndServe(port, nil)

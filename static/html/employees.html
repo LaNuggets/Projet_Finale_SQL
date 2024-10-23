@@ -21,9 +21,16 @@
     <a href="accueil">LOGO</a>
     <nav>
         <ul>
-            <li><a href="accueil">Home</a></li>
-            <li><a class="button-employees" href="allemployees">Employee</a></li>
-            <li><a href="">Teams</a></li>
+            <li><a href="/accueil">Home</a></li>
+            <li><a href="/allemployees">Employee</a></li>
+            <li class="dropdown">
+                <a class="button-teams" href="javascript:void(0)" class="dropbtn">Teams</a>
+                <div class="dropdown-content">
+                    {{range .Departments}}
+                        <a href="/department/{{.Id}}">{{.Title}}</a>
+                    {{end}}
+                </div>
+            </li>
         </ul>
     </nav>
     <i class="material-icons" style="font-size:50px;">account_circle</i>

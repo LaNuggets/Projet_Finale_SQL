@@ -18,10 +18,21 @@ func AllEmployees(w http.ResponseWriter, r *http.Request) {
 
 	allEmployeesList := Projet_Final_SQL.GetAllEmployees(w, r)
 
+	department, err := Projet_Final_SQL.GetDepartment()
+    if err != nil {
+        log.Printf("\033[31mError getting departments: %v\033[0m", err)
+        http.Error(w, "Internal error, could not retrieve departments.", http.StatusInternalServerError)
+        return
+    }
+
 	data := struct {
 		AllEmployees []Projet_Final_SQL.CompletEmployee
+		Department  []Projet_Final_SQL.Department
+
 	}{
 		AllEmployees: allEmployeesList,
+		Department:  department,
+
 	}
 
 	err = tmpl.Execute(w, data)
