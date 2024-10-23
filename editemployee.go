@@ -2,18 +2,19 @@ package main
 
 import (
 	Projet_Final_SQL "Projet_Final_SQL/go"
-	"fmt"
 	"html/template"
 	"log"
 	"net/http"
 )
 
 func EditEmployeePage(w http.ResponseWriter, r *http.Request) {
+	firstName := r.URL.Query().Get("firstname")
+	firstName2 := r.FormValue("firstname")
+
 	if r.Method == http.MethodPost {
-		Projet_Final_SQL.EditEmployee(w, r)
+		Projet_Final_SQL.EditEmployee(firstName2, w, r)
 		return
 	}
-	fmt.Println("non")
 
 	tmpl, err := template.ParseFiles("./static/html/editemployee.html") // Read the home page
 	if err != nil {
@@ -54,6 +55,11 @@ func EditEmployeePage(w http.ResponseWriter, r *http.Request) {
 		Posts:       posts,
     }
 
+	data := struct {
+		FirstNameSend string
+	}{
+		FirstNameSend: firstName,
+	}
 
 	err = tmpl.Execute(w, data)
 	if err != nil {
