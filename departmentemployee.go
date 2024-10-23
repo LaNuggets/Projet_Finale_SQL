@@ -1,0 +1,48 @@
+package main
+
+import (
+    Projet_Final_SQL "Projet_Final_SQL/go"
+    "html/template"
+    "log"
+    "net/http"
+    "strings"
+)
+
+func DepartmentEmployee(w http.ResponseWriter, r *http.Request) {
+    departmentID := strings.TrimPrefix(r.URL.Path, "/department/")
+
+    tmpl, err := template.ParseFiles("./static/html/department.html")
+    if err != nil {
+        log.Printf("\033[31mError parsing template: %v\033[0m", err)
+        http.Error(w, "Internal error, template not found.", http.StatusInternalServerError)
+        return
+    }
+
+    employeesList := Projet_Final_SQL.GetEmployeesByDepartment(w, r, departmentID)
+
+	department, err := Projet_Final_SQL.GetDepartment()
+    if err != nil {
+        log.Printf("\033[31mError getting departments: %v\033[0m", err)
+        http.Error(w, "Internal error, could not retrieve departments.", http.StatusInternalServerError)
+        return
+    }
+
+    data := struct {
+        DepartmentID string
+        Employees    []Projet_Final_SQL.CompletEmployee
+		Departments  []Projet_Final_SQL.Department
+
+    }{
+        DepartmentID: departmentID,
+        Employees:    employeesList,
+		Departments:  department,
+
+    }
+
+    err = tmpl.Execute(w, data)
+    if err != nil {
+        log.Printf("\033[31mError executing template: %v\033[0m", err)
+        http.Error(w, "Internal error", http.StatusInternalServerError)
+        return
+    }
+}

@@ -7,34 +7,35 @@
     <link rel="stylesheet" href="../style/style.css">
     <link rel="stylesheet" href="../style/header.css">
     <link rel="stylesheet" href="../style/allemployees.css">
-    <title>Home</title>
+    <link rel="stylesheet" href="../style/department.css">
+    <title>Department Employees</title>
 </head>
-<header>
-    <a href="accueil">LOGO</a>
-    <nav>
-        <ul>
-            <li><a href="/accueil">Home</a></li>
-            <li><a class="button-employees" href="/allemployees">Employee</a></li>
-            <li class="dropdown">
-                <a href="javascript:void(0)" class="dropbtn">Teams</a>
-                <div class="dropdown-content">
-                    {{range .Department}}
-                        <a href="/department/{{.Id}}">{{.Title}}</a>
-                    {{end}}
-                </div>
-            </li>
-        </ul>
-    </nav>
-    <i class="material-icons" style="font-size:50px;">account_circle</i>
-</header>
+    <header>
+        <a href="accueil">LOGO</a>
+        <nav>
+            <ul>
+                <li><a href="/accueil">Home</a></li>
+                <li><a href="/allemployees">Employee</a></li>
+                <li class="dropdown">
+                    <a class="button-teams" href="javascript:void(0)" class="dropbtn">Teams</a>
+                    <div class="dropdown-content">
+                        {{range .Departments}}
+                            <a href="/department/{{.Id}}">{{.Title}}</a>
+                        {{end}}
+                    </div>
+                </li>
+            </ul>
+        </nav>
+        <i class="material-icons" style="font-size:50px;">account_circle</i>
+    </header>
 <body>
+
     <section class="employees">
         <div class="seeEmployees">
             <button class="filter-employees">Filter by:</button>
-            <button> <a href="/employees"> New Employee </a></button>
         </div>
         <section class="employee-zone">
-        {{range .AllEmployees}}
+        {{range .Employees}}
             <div class="employee-Info">
                 <div class="employee-personnal-info">
                     <p>First Name: {{.FirstName}}</p>

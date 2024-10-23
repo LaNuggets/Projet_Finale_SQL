@@ -6,16 +6,30 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+
 }
 
 header a {
     color: white;
     text-decoration: none;
     padding: 15px;
+    display: inline-block;
+
+    
+}
+
+nav ul li {
+    position: relative;
+}
+
+nav ul li a {
+    padding: 10px 20px;
+    display: block;
 }
 
 nav {
     margin-right: 45%;
+    width: 30%;
 }
 
 nav ul {
