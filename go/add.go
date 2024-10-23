@@ -5,7 +5,19 @@ import (
 	"fmt"
 	"net/http"
 	"strconv"
+	"strings"
 )
+
+type SendCompletEmployee struct {
+	Id         int
+	LastName   string
+	FirstName  string
+	Birthday   string
+	Phone      string
+	Address    string
+	PostId     int
+	ReferentId int
+}
 
 type SendCompletEmployee struct {
 	Id         int
@@ -53,7 +65,8 @@ func AddEmployee(w http.ResponseWriter, r *http.Request) {
 	address := r.FormValue("adress")
 	birthday := r.FormValue("birthday")
 
-	postTitle := r.FormValue("posts")
+	department := r.FormValue("department")
+	postTitle := r.FormValue("post")
 	ReferentName := r.FormValue("manageBy")
 
 	postId, _ := strconv.Atoi(postTitle)
