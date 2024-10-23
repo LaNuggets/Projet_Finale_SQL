@@ -16,17 +16,31 @@ type Employee struct {
 	PostId     int
 	ReferentId int
 }
+
+// type CompletEmployee struct {
+// 	Id         int
+// 	LastName   string
+// 	FirstName  string
+// 	Birthday   string
+// 	Phone      string
+// 	Address    string
+// 	PostId     int
+// 	ReferentId int
+// 	Department string
+// 	Wage       string
+// }
+
 type CompletEmployee struct {
-	Id         int
-	LastName   string
-	FirstName  string
-	Birthday   string
-	Phone      string
-	Address    string
-	PostId     int
-	ReferentId int
-	Department string
-	Wage       string
+	Id           int
+	LastName     string
+	FirstName    string
+	Birthday     string
+	Phone        string
+	Address      string
+	PostTitle    string
+	Department   string
+	Wage         string
+	ReferentName string
 }
 
 func CheckErr(err error, w http.ResponseWriter, r *http.Request) {
