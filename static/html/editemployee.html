@@ -22,9 +22,10 @@
 </header>
 <body>
 
-    <form id="newEmployee" action="/employees" method="post">
+    <form id="newEmployee" action="/editemployee" method="post">
 
       <h1>Edit employee personal informations</h1>
+      <input type="hidden" name="firstname" value="{{.FirstNameSend}}">
       <section class="employee-zone">
         <section class="employee-info-zone">
             <section class="employee-personnal-info-left">

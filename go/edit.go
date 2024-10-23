@@ -7,7 +7,7 @@ import (
 	"strings"
 )
 
-func EditEmployee(w http.ResponseWriter, r *http.Request) {
+func EditEmployee(EditEmployeeFirstName string, w http.ResponseWriter, r *http.Request) {
 	errP := r.ParseForm()
 	if errP != nil {
 		http.Error(w, "Error parsing form", http.StatusInternalServerError)
@@ -20,14 +20,11 @@ func EditEmployee(w http.ResponseWriter, r *http.Request) {
 	address := r.FormValue("adress")
 	birthday := r.FormValue("birthday")
 
-	department := r.FormValue("department")
 	postTitle := r.FormValue("post")
 	ReferentName := r.FormValue("manageBy")
 
 	var postId int
 	var referentId int
-
-	fmt.Println(lastName, firstName, phone, address, birthday, department, postTitle, ReferentName)
 
 	db, err := sql.Open("sqlite3", "bdd.db?_foreign_keys=on")
 	CheckErr(err, w, r)
@@ -47,8 +44,8 @@ func EditEmployee(w http.ResponseWriter, r *http.Request) {
 	}
 	newEmployee := SendCompletEmployee{LastName: lastName, FirstName: firstName, Phone: phone, Address: address, Birthday: birthday, PostId: postId, ReferentId: referentId}
 
-	query, _ := db.Prepare("UPDATE employees SET (LastName, FirstName, BirthDay, Phone, Address) VALUES (?, ?, ?, ?, ?, ?, ?)")
-	query.Exec(newEmployee.LastName, newEmployee.FirstName, newEmployee.Birthday, newEmployee.Phone, newEmployee.Address, newEmployee.PostId, newEmployee.ReferentId)
+	query, _ := db.Prepare("UPDATE employees SET LastName = ?, FirstName = ?, BirthDay = ?, Phone = ?, Address = ?, PostId = ?, referentId = ? WHERE LOWER(FirstName) = ?")
+	query.Exec(newEmployee.LastName, newEmployee.FirstName, newEmployee.Birthday, newEmployee.Phone, newEmployee.Address, newEmployee.PostId, newEmployee.ReferentId, strings.ToLower(EditEmployeeFirstName))
 	defer query.Close()
 
 	http.Redirect(w, r, "/allemployees", http.StatusSeeOther)
