@@ -6,13 +6,27 @@ import (
 	"net/http"
 )
 
-type Employees struct {
-	Id        int
-	LastName  string
-	FirstName string
-	Birthday  string
-	Phone     string
-	Address   string
+type Employee struct {
+	Id         int
+	LastName   string
+	FirstName  string
+	Birthday   string
+	Phone      string
+	Address    string
+	PostId     int
+	ReferentId int
+}
+type CompletEmployee struct {
+	Id         int
+	LastName   string
+	FirstName  string
+	Birthday   string
+	Phone      string
+	Address    string
+	PostId     int
+	ReferentId int
+	Department string
+	Wage       string
 }
 
 func CheckErr(err error, w http.ResponseWriter, r *http.Request) {
@@ -22,7 +36,27 @@ func CheckErr(err error, w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func AddEmployee(employe Employees, w http.ResponseWriter, r *http.Request) {
+func AddEmployee(w http.ResponseWriter, r *http.Request) {
+	errP := r.ParseForm()
+	if errP != nil {
+		http.Error(w, "Error parsing form", http.StatusInternalServerError)
+		return
+	}
+
+	lastName := r.FormValue("lastName")
+	firstName := r.FormValue("firstName")
+	phone := r.FormValue("phoneNumber")
+	address := r.FormValue("adress")
+	birthday := r.FormValue("birthday")
+
+	department := r.FormValue("department")
+	post := r.FormValue("post")
+	manageBy := r.FormValue("manageBy")
+
+	fmt.Println(lastName, firstName, phone, address, birthday, department, post, manageBy)
+
+	newEmployee := Employee{LastName: lastName, FirstName: firstName, Phone: phone, Address: address, Birthday: birthday}
+
 	//Open the database connection
 	db, err := sql.Open("sqlite3", "bdd.db?_foreign_keys=on")
 	CheckErr(err, w, r)
@@ -30,6 +64,8 @@ func AddEmployee(employe Employees, w http.ResponseWriter, r *http.Request) {
 	defer db.Close()
 
 	query, _ := db.Prepare("INSERT INTO employees (LastName, FirstName, BirthDay, Phone, Address) VALUES (?, ?, ?, ?, ?)")
-	query.Exec(employe.LastName, employe.FirstName, employe.Birthday, employe.Phone, employe.Address)
+	query.Exec(newEmployee.LastName, newEmployee.FirstName, newEmployee.Birthday, newEmployee.Phone, newEmployee.Address)
 	defer query.Close()
+
+	http.Redirect(w, r, "/allemployees", http.StatusSeeOther)
 }

@@ -35,7 +35,7 @@ VALUES
 
 INSERT INTO Employees (Id, LastName, FirstName, BirthDay, Phone, Address, PostId, ReferentId)
 VALUES
-(1, 'Durand', 'Jean', '1985-05-12', '0601020304', '12 rue de Paris', 1, NULL),   -- Directeur Général
+(1, 'Durand', 'Jean', '1985-05-12', '0601020304', '12 rue de Paris', 1, 1),   -- Directeur Général
 (2, 'Martin', 'Claire', '1990-08-25', '0605060708', '8 avenue des Champs', 2, 1), -- Responsable RH
 (3, 'Leclerc', 'Paul', '1982-11-14', '0610101112', '5 rue Victor Hugo', 3, 2), -- Chargé de recrutement
 (4, 'Bernard', 'Marie', '1988-04-18', '0617181920', '15 boulevard Voltaire', 4, 1), -- Comptable

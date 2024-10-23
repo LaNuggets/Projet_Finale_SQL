@@ -27,20 +27,20 @@
             <button> <a href="employees"> New Employee </a></button>
         </div>
         <section class="employee-zone">
-        {{range .}}
+        {{range .AllEmployees}}
             <div class="employee-Info">
                 <div class="employee-personnal-info">
                     <p>First Name: {{.FirstName}}</p>
                     <p>Last Name: {{.LastName}}</p>
-                    <p>Phone Number: {{.PhoneNumber}}</p>
+                    <p>Phone Number: {{.Phone}}</p>
                     <p>Address: {{.Address}}</p>
-                    <p>Birthdate: {{.Birthdate}}</p>
+                    <p>Birthdate: {{.Birthday}}</p>
                 </div>
                 <div class="employee-working-info">
                     <p>Department: {{.Department}}</p>
-                    <p>Post: {{.Post}}</p>
+                    <p>Post: {{.PostId}}</p>
                     <p>Wage: {{.Wage}}</p>
-                    <p>Manage By: {{.ManageBy}}</p>
+                    <p>Manage By: {{.ReferentId}}</p>
                 </div>
                 <a href="editemployee" class="edit-employee">Edit</a>
             </div>
