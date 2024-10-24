@@ -18,6 +18,7 @@ type SendCompletEmployee struct {
 	ReferentId int
 }
 
+
 type CompletEmployee struct {
 	Id           int
 	LastName     string
