@@ -49,18 +49,14 @@ func EditEmployeePage(w http.ResponseWriter, r *http.Request) {
         Departments []Projet_Final_SQL.Department
 		Referents   []Projet_Final_SQL.Referent
 		Posts       []Projet_Final_SQL.Post
+		FirstNameSend string
 
     }{
         Departments: department,
 		Referents:   referents,
 		Posts:       posts,
-    }
-
-	data := struct {
-		FirstNameSend string
-	}{
 		FirstNameSend: firstName,
-	}
+    }
 
 	err = tmpl.Execute(w, data)
 	if err != nil {

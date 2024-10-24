@@ -2,7 +2,7 @@ CREATE TABLE IF NOT EXISTS employees (
     Id INTEGER PRIMARY KEY,
     LastName VARCHAR(25),
     FirstName VARCHAR(25),
-    BirthDay DATE,
+    BirthDay TEXT,
     Phone VARCHAR(25),
     Address VARCHAR(25),
     PostId INTEGER,

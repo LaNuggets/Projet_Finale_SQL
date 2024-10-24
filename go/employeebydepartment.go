@@ -13,14 +13,21 @@ func GetEmployeesByDepartment(w http.ResponseWriter, r *http.Request, department
     
     
 
-    rows, err := db.Query("SELECT e.Id, e.LastName, e.FirstName, e.Birthday, e.Phone, e.Address, e.PostId, e.referentId, d.Title, s.Wage FROM employees e LEFT JOIN posts p ON e.PostId = p.Id LEFT JOIN department d ON p.DepartmentId = d.Id LEFT JOIN salary s ON p.SalaryId = s.Id WHERE d.Id = ?", departmentID)
+    rows, err := db.Query(`SELECT DISTINCT e.Id, e.LastName, e.FirstName, e.Birthday, e.Phone, e.Address, p.Title AS PostTitle, d.Title AS Department, s.Wage, CONCAT(rf.FirstName, ' ', rf.LastName) AS ReferentName
+	FROM employees e 
+	LEFT JOIN posts p ON e.PostId = p.Id 
+	LEFT JOIN department d ON p.DepartmentId = d.Id 
+	LEFT JOIN salary s ON p.SalaryId = s.Id 
+	LEFT JOIN referent r ON e.referentId = r.ReferentId 
+	LEFT JOIN employees rf ON r.ReferentId = rf.Id
+    WHERE d.Id = ?`, departmentID)
     CheckErr(err, w, r)
     defer rows.Close()
 
     var employeesList []CompletEmployee
     for rows.Next() {
         var employee CompletEmployee
-        err = rows.Scan(&employee.Id, &employee.LastName, &employee.FirstName, &employee.Birthday, &employee.Phone, &employee.Address, &employee.PostId, &employee.ReferentId, &employee.Department, &employee.Wage)
+		err = rows.Scan(&employee.Id, &employee.LastName, &employee.FirstName, &employee.Birthday, &employee.Phone, &employee.Address, &employee.PostTitle, &employee.Department, &employee.Wage, &employee.ReferentName)
         CheckErr(err, w, r)
         employeesList = append(employeesList, employee)
     }

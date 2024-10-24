@@ -18,6 +18,8 @@ func DepartmentEmployee(w http.ResponseWriter, r *http.Request) {
         return
     }
 
+    allEmployeesList := Projet_Final_SQL.GetAllEmployees(w, r)
+
     employeesList := Projet_Final_SQL.GetEmployeesByDepartment(w, r, departmentID)
 
 	department, err := Projet_Final_SQL.GetDepartment()
@@ -31,12 +33,15 @@ func DepartmentEmployee(w http.ResponseWriter, r *http.Request) {
         DepartmentID string
         Employees    []Projet_Final_SQL.CompletEmployee
 		Departments  []Projet_Final_SQL.Department
+        AllEmployees []Projet_Final_SQL.CompletEmployee
+
+
 
     }{
         DepartmentID: departmentID,
         Employees:    employeesList,
 		Departments:  department,
-
+        AllEmployees: allEmployeesList,
     }
 
     err = tmpl.Execute(w, data)
