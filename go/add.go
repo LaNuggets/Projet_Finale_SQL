@@ -73,3 +73,17 @@ func AddEmployee(w http.ResponseWriter, r *http.Request) {
 
 	http.Redirect(w, r, "/allemployees", http.StatusSeeOther)
 }
+
+func DeleteEmployee(IdDeletedEmploye string, w http.ResponseWriter, r *http.Request) {
+	//Open the database connection
+	db, err := sql.Open("sqlite3", "bdd.db?_foreign_keys=on")
+	CheckErr(err, w, r)
+	// Close the batabase at the end of the program
+	defer db.Close()
+
+	query, _ := db.Prepare("DELETE FROM employees WHERE Id = ?")
+	query.Exec(IdDeletedEmploye)
+	defer query.Close()
+
+	http.Redirect(w, r, "/allemployees", http.StatusSeeOther)
+}

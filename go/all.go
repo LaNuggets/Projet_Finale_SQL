@@ -22,7 +22,7 @@ func GetAllEmployees(w http.ResponseWriter, r *http.Request) []CompletEmployee {
 		employees := CompletEmployee{}
 		err = rows.Scan(&employees.Id, &employees.LastName, &employees.FirstName, &employees.Birthday, &employees.Phone, &employees.Address, &employees.PostTitle, &employees.Department, &employees.Wage, &employees.ReferentName)
 		CheckErr(err, w, r)
-		Nemployees := CompletEmployee{LastName: employees.LastName, FirstName: employees.FirstName, Birthday: employees.Birthday, Phone: employees.Phone, Address: employees.Address, PostTitle: employees.PostTitle, Department: employees.Department, Wage: employees.Wage, ReferentName: employees.ReferentName}
+		Nemployees := CompletEmployee{Id: employees.Id, LastName: employees.LastName, FirstName: employees.FirstName, Birthday: employees.Birthday, Phone: employees.Phone, Address: employees.Address, PostTitle: employees.PostTitle, Department: employees.Department, Wage: employees.Wage, ReferentName: employees.ReferentName}
 
 		employeesList = append(employeesList, Nemployees)
 	}
@@ -46,7 +46,7 @@ func FilterByAlphabetASC(w http.ResponseWriter, r *http.Request) []CompletEmploy
 		employees := CompletEmployee{}
 		err = rows.Scan(&employees.Id, &employees.LastName, &employees.FirstName, &employees.Birthday, &employees.Phone, &employees.Address, &employees.PostTitle, &employees.Department, &employees.Wage, &employees.ReferentName)
 		CheckErr(err, w, r)
-		Nemployees := CompletEmployee{LastName: employees.LastName, FirstName: employees.FirstName, Birthday: employees.Birthday, Phone: employees.Phone, Address: employees.Address, PostTitle: employees.PostTitle, Department: employees.Department, Wage: employees.Wage, ReferentName: employees.ReferentName}
+		Nemployees := CompletEmployee{Id: employees.Id, LastName: employees.LastName, FirstName: employees.FirstName, Birthday: employees.Birthday, Phone: employees.Phone, Address: employees.Address, PostTitle: employees.PostTitle, Department: employees.Department, Wage: employees.Wage, ReferentName: employees.ReferentName}
 
 		employeesList = append(employeesList, Nemployees)
 	}
@@ -70,7 +70,7 @@ func FilterByAlphabetDESC(w http.ResponseWriter, r *http.Request) []CompletEmplo
 		employees := CompletEmployee{}
 		err = rows.Scan(&employees.Id, &employees.LastName, &employees.FirstName, &employees.Birthday, &employees.Phone, &employees.Address, &employees.PostTitle, &employees.Department, &employees.Wage, &employees.ReferentName)
 		CheckErr(err, w, r)
-		Nemployees := CompletEmployee{LastName: employees.LastName, FirstName: employees.FirstName, Birthday: employees.Birthday, Phone: employees.Phone, Address: employees.Address, PostTitle: employees.PostTitle, Department: employees.Department, Wage: employees.Wage, ReferentName: employees.ReferentName}
+		Nemployees := CompletEmployee{Id: employees.Id, LastName: employees.LastName, FirstName: employees.FirstName, Birthday: employees.Birthday, Phone: employees.Phone, Address: employees.Address, PostTitle: employees.PostTitle, Department: employees.Department, Wage: employees.Wage, ReferentName: employees.ReferentName}
 
 		employeesList = append(employeesList, Nemployees)
 	}
@@ -94,7 +94,7 @@ func FilterByWageASC(w http.ResponseWriter, r *http.Request) []CompletEmployee {
 		employees := CompletEmployee{}
 		err = rows.Scan(&employees.Id, &employees.LastName, &employees.FirstName, &employees.Birthday, &employees.Phone, &employees.Address, &employees.PostTitle, &employees.Department, &employees.Wage, &employees.ReferentName)
 		CheckErr(err, w, r)
-		Nemployees := CompletEmployee{LastName: employees.LastName, FirstName: employees.FirstName, Birthday: employees.Birthday, Phone: employees.Phone, Address: employees.Address, PostTitle: employees.PostTitle, Department: employees.Department, Wage: employees.Wage, ReferentName: employees.ReferentName}
+		Nemployees := CompletEmployee{Id: employees.Id, LastName: employees.LastName, FirstName: employees.FirstName, Birthday: employees.Birthday, Phone: employees.Phone, Address: employees.Address, PostTitle: employees.PostTitle, Department: employees.Department, Wage: employees.Wage, ReferentName: employees.ReferentName}
 
 		employeesList = append(employeesList, Nemployees)
 	}
@@ -118,7 +118,7 @@ func FilterByWageDESC(w http.ResponseWriter, r *http.Request) []CompletEmployee 
 		employees := CompletEmployee{}
 		err = rows.Scan(&employees.Id, &employees.LastName, &employees.FirstName, &employees.Birthday, &employees.Phone, &employees.Address, &employees.PostTitle, &employees.Department, &employees.Wage, &employees.ReferentName)
 		CheckErr(err, w, r)
-		Nemployees := CompletEmployee{LastName: employees.LastName, FirstName: employees.FirstName, Birthday: employees.Birthday, Phone: employees.Phone, Address: employees.Address, PostTitle: employees.PostTitle, Department: employees.Department, Wage: employees.Wage, ReferentName: employees.ReferentName}
+		Nemployees := CompletEmployee{Id: employees.Id, LastName: employees.LastName, FirstName: employees.FirstName, Birthday: employees.Birthday, Phone: employees.Phone, Address: employees.Address, PostTitle: employees.PostTitle, Department: employees.Department, Wage: employees.Wage, ReferentName: employees.ReferentName}
 
 		employeesList = append(employeesList, Nemployees)
 	}
@@ -142,7 +142,7 @@ func FilterByBirthdayASC(w http.ResponseWriter, r *http.Request) []CompletEmploy
 		employees := CompletEmployee{}
 		err = rows.Scan(&employees.Id, &employees.LastName, &employees.FirstName, &employees.Birthday, &employees.Phone, &employees.Address, &employees.PostTitle, &employees.Department, &employees.Wage, &employees.ReferentName)
 		CheckErr(err, w, r)
-		Nemployees := CompletEmployee{LastName: employees.LastName, FirstName: employees.FirstName, Birthday: employees.Birthday, Phone: employees.Phone, Address: employees.Address, PostTitle: employees.PostTitle, Department: employees.Department, Wage: employees.Wage, ReferentName: employees.ReferentName}
+		Nemployees := CompletEmployee{Id: employees.Id, LastName: employees.LastName, FirstName: employees.FirstName, Birthday: employees.Birthday, Phone: employees.Phone, Address: employees.Address, PostTitle: employees.PostTitle, Department: employees.Department, Wage: employees.Wage, ReferentName: employees.ReferentName}
 
 		employeesList = append(employeesList, Nemployees)
 	}
@@ -166,7 +166,7 @@ func FilterByBirthdayDESC(w http.ResponseWriter, r *http.Request) []CompletEmplo
 		employees := CompletEmployee{}
 		err = rows.Scan(&employees.Id, &employees.LastName, &employees.FirstName, &employees.Birthday, &employees.Phone, &employees.Address, &employees.PostTitle, &employees.Department, &employees.Wage, &employees.ReferentName)
 		CheckErr(err, w, r)
-		Nemployees := CompletEmployee{LastName: employees.LastName, FirstName: employees.FirstName, Birthday: employees.Birthday, Phone: employees.Phone, Address: employees.Address, PostTitle: employees.PostTitle, Department: employees.Department, Wage: employees.Wage, ReferentName: employees.ReferentName}
+		Nemployees := CompletEmployee{Id: employees.Id, LastName: employees.LastName, FirstName: employees.FirstName, Birthday: employees.Birthday, Phone: employees.Phone, Address: employees.Address, PostTitle: employees.PostTitle, Department: employees.Department, Wage: employees.Wage, ReferentName: employees.ReferentName}
 
 		employeesList = append(employeesList, Nemployees)
 	}

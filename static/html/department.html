@@ -50,6 +50,13 @@
                     <p>Wage: {{.Wage}}</p>
                     <p>Manage By: {{.ReferentId}}</p>
                 </div>
+                
+                <form id="deleteEmployee" action="/allemployees" method="post">
+
+                    <input type="text" name="delete" value="{{.Id}}" hidden>
+                    <input type="submit" value="delete Employee">
+                </form>
+
                 <a href="/editemployee" class="edit-employee">Edit</a>
             </div>
         {{end}}

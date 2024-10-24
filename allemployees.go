@@ -17,10 +17,15 @@ func AllEmployees(w http.ResponseWriter, r *http.Request) {
 	}
 
 	var filtredEmployeesList []Projet_Final_SQL.CompletEmployee
-
-	// allEmployeesList := Projet_Final_SQL.GetAllEmployees(w, r)
+	filtredEmployeesList = Projet_Final_SQL.GetAllEmployees(w, r)
 
 	filter := r.FormValue("filter")
+
+	IdDeletedEmploye := r.FormValue("delete")
+
+	if IdDeletedEmploye != "" {
+		Projet_Final_SQL.DeleteEmployee(IdDeletedEmploye, w, r)
+	}
 
 	switch filter {
 	case "default":
