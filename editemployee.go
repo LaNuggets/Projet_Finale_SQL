@@ -58,6 +58,7 @@ func EditEmployeePage(w http.ResponseWriter, r *http.Request) {
 		FirstNameSend: firstName,
     }
 
+
 	err = tmpl.Execute(w, data)
 	if err != nil {
 		log.Printf("\033[31mError executing template: %v\033[0m", err)
