@@ -2,7 +2,6 @@ package Projet_Final_SQL
 
 import (
 	"database/sql"
-	"fmt"
 	"net/http"
 	"strconv"
 	"strings"
@@ -23,9 +22,6 @@ func EditEmployee(EditEmployeeFirstName string, w http.ResponseWriter, r *http.R
 
 	postTitle := r.FormValue("posts")
 	ReferentName := r.FormValue("manageBy")
-
-	fmt.Println(postTitle + "post")
-	fmt.Println(ReferentName + "manage")
 
 	postId, _ := strconv.Atoi(postTitle)
 	referentId, _ := strconv.Atoi(ReferentName)

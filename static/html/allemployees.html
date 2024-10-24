@@ -30,7 +30,22 @@
 <body>
     <section class="employees">
         <div class="seeEmployees">
-            <button class="filter-employees">Filter by:</button>
+
+        <form id="filtersForm" action="/allemployees" method="post">
+            
+            <label for="filters">Filter by </label><br>
+            <select id="filter" name="filter" class="filter-employees">
+                <option value="default">Default</option>
+                <option value="wageASC">Wage</option>
+                <option value="wageDESC">Reverse Wage</option>
+                <option value="alphabetASC">Alphabetique Order </option>
+                <option value="alphabetDESC">Reverse Alphabetique Order</option>
+                <option value="birthdayASC">Birthday</option>
+                <option value="birthdayDESC">Reverse Birthday</option>
+            </select>
+            <button type="submit">Choose</button>
+        </form>
+
             <button> <a href="/employees"> New Employee </a></button>
         </div>
         <section class="employee-zone">
