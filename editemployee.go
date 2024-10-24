@@ -23,9 +23,36 @@ func EditEmployeePage(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	department, err := Projet_Final_SQL.GetDepartment()
+	if err != nil {
+		log.Printf("\033[31mError getting all departments: %v\033[0m", err)
+		http.Error(w, "Internal error, could not retrieve departments.", http.StatusInternalServerError)
+		return
+	}
+
+	referents, err := Projet_Final_SQL.GetReferents()
+	if err != nil {
+		log.Printf("\033[31mError getting all referents: %v\033[0m", err)
+		http.Error(w, "Internal error, could not retrieve referents.", http.StatusInternalServerError)
+		return
+	}
+
+	posts, err := Projet_Final_SQL.GetPostsByDepartment()
+	if err != nil {
+		log.Printf("\033[31mError getting all referents: %v\033[0m", err)
+		http.Error(w, "Internal error, could not retrieve referents.", http.StatusInternalServerError)
+		return
+	}
+
 	data := struct {
+		Departments   []Projet_Final_SQL.Department
+		Referents     []Projet_Final_SQL.Referent
+		Posts         []Projet_Final_SQL.Post
 		FirstNameSend string
 	}{
+		Departments:   department,
+		Referents:     referents,
+		Posts:         posts,
 		FirstNameSend: firstName,
 	}
 

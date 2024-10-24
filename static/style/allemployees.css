@@ -36,6 +36,8 @@
     border-radius: 15px;
     padding: 2%;
     margin-top: 2.5%;
+    overflow-y: hidden;
+    gap: 25px;
 }
 
 .employee-zone a {
@@ -62,12 +64,22 @@
 
 }
 
-.employee-personnal-info, .employee-working-info {
+.employee-personnal-info{
     background-color: #EDEDED;
     outline: 1px solid rgb(0, 0, 0, 0.5);
     border-radius: 15px;
-    width: 100%;
+    width: 200px;
+    height: 200px;
     padding: 10%;
 }
+
+.employee-working-info {
+    background-color: #EDEDED;
+    outline: 1px solid rgb(0, 0, 0, 0.5);
+    border-radius: 15px;
+    width: 200px;
+    padding: 10%;
+}
+
 
 

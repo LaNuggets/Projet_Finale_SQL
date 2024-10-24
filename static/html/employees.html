@@ -21,9 +21,16 @@
     <a href="accueil">LOGO</a>
     <nav>
         <ul>
-            <li><a href="accueil">Home</a></li>
-            <li><a class="button-employees" href="allemployees">Employee</a></li>
-            <li><a href="">Teams</a></li>
+            <li><a href="/accueil">Home</a></li>
+            <li><a href="/allemployees">Employee</a></li>
+            <li class="dropdown">
+                <a class="button-teams" href="javascript:void(0)" class="dropbtn">Teams</a>
+                <div class="dropdown-content">
+                    {{range .Departments}}
+                        <a href="/department/{{.Id}}">{{.Title}}</a>
+                    {{end}}
+                </div>
+            </li>
         </ul>
     </nav>
     <i class="material-icons" style="font-size:50px;">account_circle</i>
@@ -63,39 +70,34 @@
             </section>
             <section class="employee-work-zone">
                 <div>
-                    <label for="department">Department</label><br>
+                    <label for="department">Department :</label><br>
                     <select id="department" name="department" required>
-                        <option value="direction">Direction</option>
-                        <option value="humanResources">Human Resources</option>
-                        <option value="accountability">Accountability</option>
-                        <option value="marketing">Marketing</option>
-                        <option value="production">Production</option>
-                      </select>
-                    <!-- <input type="text" id="department" name="department" required> -->
+                        {{range .Departments}}
+                            <option value="{{.Id}}">{{.Title}}</option>
+                        {{end}}
+                    </select>
                 </div>
                 <div>
-                    <label for="post">Post</label><br>
-                    <select id="post" name="post" required>
-                        <option value="Directeur Général">Directeur Général</option>
-                        <option value="Responsable RH">Responsable RH</option>
-                        <option value="Chargé de recrutement">Chargé de recrutement</option>
-                        <option value="Comptable">Comptable</option>
-                        <option value="Responsable Marketing">Responsable Marketing</option>
-                        <option value="Assistant Marketing">Assistant Marketing</option>
-                        <option value="Responsable de production">Responsable de production</option>
-                        <option value="Opérateur de production">Opérateur de production</option>
-                        <option value="Commercial">Commercial</option>
-                      </select>
-                    <!-- <input type="text" id="post" name="post" required> -->
+                    <label for="post">Post :</label><br>
+                    <select id="posts" name="posts" required> 
+                        {{range .Posts}}
+                            <option value="{{.ID}}">{{.Title}}</option>
+                        {{end}}
+                    </select>
                 </div>
                 <div>
                     <label for="manageBy">Manage By :</label><br>
-                    <input type="text" id="manageBy" name="manageBy" required>
+                    <select id="manageBy" name="manageBy" required>
+                        {{range .Referents}}
+                            <option value="{{.ID}}">{{.Name}}</option>
+                        {{end}}
+                    </select>
                 </div>
             </section>
         </section>
         <button type="submit">New Employee</button>
     </form>
+    
 </body>
 
 </html>
