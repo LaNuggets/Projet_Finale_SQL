@@ -70,14 +70,6 @@
             </section>
             <section class="employee-work-zone">
                 <div>
-                    <label for="department">Department :</label><br>
-                    <select id="department" name="department" required>
-                        {{range .Departments}}
-                            <option value="{{.Id}}">{{.Title}}</option>
-                        {{end}}
-                    </select>
-                </div>
-                <div>
                     <label for="post">Post :</label><br>
                     <select id="posts" name="posts" required> 
                         {{range .Posts}}

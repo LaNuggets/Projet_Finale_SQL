@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"fmt"
 	"net/http"
+	"strconv"
 	"strings"
 )
 
@@ -20,28 +21,20 @@ func EditEmployee(EditEmployeeFirstName string, w http.ResponseWriter, r *http.R
 	address := r.FormValue("adress")
 	birthday := r.FormValue("birthday")
 
-	postTitle := r.FormValue("post")
+	postTitle := r.FormValue("posts")
 	ReferentName := r.FormValue("manageBy")
 
-	var postId int
-	var referentId int
+	fmt.Println(postTitle + "post")
+	fmt.Println(ReferentName + "manage")
+
+	postId, _ := strconv.Atoi(postTitle)
+	referentId, _ := strconv.Atoi(ReferentName)
 
 	db, err := sql.Open("sqlite3", "bdd.db?_foreign_keys=on")
 	CheckErr(err, w, r)
 	// Close the batabase at the end of the program
 	defer db.Close()
 
-	err = db.QueryRow("SELECT Id FROM posts WHERE Title = ?", postTitle).Scan(&postId)
-	if err != nil {
-		fmt.Println("Aucun post trouvé avec ce titre.")
-		return
-	}
-
-	err = db.QueryRow("SELECT Id FROM employees WHERE LOWER(FirstName) = ?", strings.ToLower(ReferentName)).Scan(&referentId)
-	if err != nil {
-		fmt.Println("Aucun manager trouvé avec ce prénom.")
-		return
-	}
 	newEmployee := SendCompletEmployee{LastName: lastName, FirstName: firstName, Phone: phone, Address: address, Birthday: birthday, PostId: postId, ReferentId: referentId}
 
 	query, _ := db.Prepare("UPDATE employees SET LastName = ?, FirstName = ?, BirthDay = ?, Phone = ?, Address = ?, PostId = ?, referentId = ? WHERE LOWER(FirstName) = ?")

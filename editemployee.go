@@ -8,6 +8,7 @@ import (
 )
 
 func EditEmployeePage(w http.ResponseWriter, r *http.Request) {
+	
 	firstName := r.URL.Query().Get("firstname")
 	firstName2 := r.FormValue("firstname")
 

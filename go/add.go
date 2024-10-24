@@ -4,7 +4,7 @@ import (
 	"database/sql"
 	"fmt"
 	"net/http"
-	"strings"
+	"strconv"
 )
 
 type SendCompletEmployee struct {
@@ -53,11 +53,11 @@ func AddEmployee(w http.ResponseWriter, r *http.Request) {
 	address := r.FormValue("adress")
 	birthday := r.FormValue("birthday")
 
-	postTitle := r.FormValue("post")
+	postTitle := r.FormValue("posts")
 	ReferentName := r.FormValue("manageBy")
 
-	var postId int
-	var referentId int
+	postId, _ := strconv.Atoi(postTitle)
+	referentId, _ := strconv.Atoi(ReferentName)
 
 	//Open the database connection
 	db, err := sql.Open("sqlite3", "bdd.db?_foreign_keys=on")
@@ -65,17 +65,6 @@ func AddEmployee(w http.ResponseWriter, r *http.Request) {
 	// Close the batabase at the end of the program
 	defer db.Close()
 
-	err = db.QueryRow("SELECT Id FROM posts WHERE Title = ?", postTitle).Scan(&postId)
-	if err != nil {
-		fmt.Println("Aucun post trouvé avec ce titre.")
-		return
-	}
-
-	err = db.QueryRow("SELECT Id FROM employees WHERE LOWER(FirstName) = ?", strings.ToLower(ReferentName)).Scan(&referentId)
-	if err != nil {
-		fmt.Println("Aucun manager trouvé avec ce prénom.")
-		return
-	}
 	newEmployee := SendCompletEmployee{LastName: lastName, FirstName: firstName, Phone: phone, Address: address, Birthday: birthday, PostId: postId, ReferentId: referentId}
 
 	query, _ := db.Prepare("INSERT INTO employees (LastName, FirstName, BirthDay, Phone, Address, PostId, ReferentId) VALUES (?, ?, ?, ?, ?, ?, ?)")
