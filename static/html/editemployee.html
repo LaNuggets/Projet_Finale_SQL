@@ -60,19 +60,31 @@
             </section>
         </section>
         <section class="employee-work-zone">
-          <div>
-              <label for="department">Department :</label><br>
-              <input type="text" id="department" name="department" required>
-          </div>
-          <div>
-              <label for="post">Post :</label><br>
-              <input type="text" id="post" name="post" required>
-          </div>
-          <div>
-              <label for="manageBy">Manage By :</label><br>
-              <input type="text" id="manageBy" name="manageBy" required>
-          </div>
-      </section>
+            <div>
+                <label for="department">Department :</label><br>
+                <select id="department" name="department" required>
+                    {{range .Departments}}
+                        <option value="{{.Id}}">{{.Title}}</option>
+                    {{end}}
+                </select>
+            </div>
+            <div>
+                <label for="post">Post :</label><br>
+                <select id="posts" name="posts" required> 
+                    {{range .Posts}}
+                        <option value="{{.ID}}">{{.Title}}</option>
+                    {{end}}
+                </select>
+            </div>
+            <div>
+                <label for="manageBy">Manage By :</label><br>
+                <select id="manageBy" name="manageBy" required>
+                    {{range .Referents}}
+                        <option value="{{.ID}}">{{.Name}}</option>
+                    {{end}}
+                </select>
+            </div>
+        </section>
     </section>
     <button type="submit">Edit</button>
     </form>
