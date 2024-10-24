@@ -70,30 +70,12 @@
             </section>
             <section class="employee-work-zone">
                 <div>
-                    <label for="department">Department</label><br>
-                    <select id="department" name="department" required>
-                        <option value="direction">Direction</option>
-                        <option value="humanResources">Human Resources</option>
-                        <option value="accountability">Accountability</option>
-                        <option value="marketing">Marketing</option>
-                        <option value="production">Production</option>
-                      </select>
-                    <!-- <input type="text" id="department" name="department" required> -->
-                </div>
-                <div>
-                    <label for="post">Post</label><br>
-                    <select id="post" name="post" required>
-                        <option value="Directeur Général">Directeur Général</option>
-                        <option value="Responsable RH">Responsable RH</option>
-                        <option value="Chargé de recrutement">Chargé de recrutement</option>
-                        <option value="Comptable">Comptable</option>
-                        <option value="Responsable Marketing">Responsable Marketing</option>
-                        <option value="Assistant Marketing">Assistant Marketing</option>
-                        <option value="Responsable de production">Responsable de production</option>
-                        <option value="Opérateur de production">Opérateur de production</option>
-                        <option value="Commercial">Commercial</option>
-                      </select>
-                    <!-- <input type="text" id="post" name="post" required> -->
+                    <label for="post">Post :</label><br>
+                    <select id="posts" name="posts" required> 
+                        {{range .Posts}}
+                            <option value="{{.ID}}">{{.Title}}</option>
+                        {{end}}
+                    </select>
                 </div>
                 <div>
                     <label for="manageBy">Manage By :</label><br>
