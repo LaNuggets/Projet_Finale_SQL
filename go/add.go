@@ -37,6 +37,8 @@ type CompletEmployee struct {
 	Birthday     string
 	Phone        string
 	Address      string
+	PostId       int
+	ReferentId   int
 	PostTitle    string
 	Department   string
 	Wage         string
